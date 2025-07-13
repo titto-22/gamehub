@@ -4,27 +4,25 @@ Este é um sistema web desenvolvido com Django + Django REST Framework para gere
 
 ---
 
-## ✅ Funcionalidades
+##  Funcionalidades
 - Cadastro de jogos com categoria, plataforma e desenvolvedora
 - Biblioteca personalizada para cada usuário
 - Marcar jogos como favoritos
 - Avaliar jogos
 - Emprestar jogos entre usuários
 - Receber notificações (com envio simulado por email)
-- API REST com autenticação JWT (opcional)
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 - Python 3.11+
 - Django 4+
 - Django REST Framework
-- SimpleJWT (autenticação por token JWT)
 - SQLite (banco padrão do Django)
 
 ---
 
-## 🚀 Como Rodar o Projeto Localmente
+## Como Rodar o Projeto Localmente
 
 ### 1. Clone o repositório
 ```bash
@@ -63,7 +61,7 @@ Acesse: http://127.0.0.1:8000/
 
 ---
 
-## 📌 Endpoints Principais da API
+##  Endpoints Principais da API
 
 ### Autenticação JWT
 ```
@@ -80,9 +78,6 @@ GET/POST/PUT/DELETE:
 /api/desenvolvedoras/
 ```
 
-> Obs: Por padrão, as rotas estão públicas (`AllowAny`). Você pode exigir token JWT se quiser.
-
----
 
 ## 📂 Estrutura de Diretórios
 ```
@@ -99,38 +94,10 @@ gamehub/
 └── manage.py
 ```
 
----
-
-## 🧪 Testes Automatizados
-- Os testes são feitos com **Katalon Studio**.
-- Incluem:
-  - Teste de autenticação
-  - Testes GET e POST para /jogos/
-  - Validação de resposta 200/201 e conteúdo do JSON
-
-> Os arquivos `.zip` dos testes e instruções estão na pasta `/tests_katalon/`.
-
----
-
-## 🧰 Jenkins
-Há um `Jenkinsfile` incluído com os seguintes passos:
-- Instala dependências
-- Roda migrações
-- Executa testes
-- Faz linting do código
-
----
-
-## 🔎 Análise de Código - SonarCloud
-- A análise de qualidade é feita pelo [SonarCloud](https://sonarcloud.io)
-- O projeto deve ser vinculado ao repositório do GitHub
-- Gere o PDF com a análise da branch `main` para entrega final
-
----
 
 ## 📃 Licença
 Este projeto é apenas para fins acadêmicos e educacionais.
 
 ---
 
-Feito com 💻 por [Seu Nome Aqui]
+Feito com 💻 por Vitor Souza
