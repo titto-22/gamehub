@@ -32,6 +32,8 @@ class Jogo(models.Model):
 class Biblioteca(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     jogos = models.ManyToManyField(Jogo, blank=True)
+    def __str__(self):
+        return f"Biblioteca de {self.usuario.username}"
 
 class Avaliacao(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
