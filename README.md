@@ -22,6 +22,13 @@ Este é um sistema web desenvolvido com Django + Django REST Framework para gere
 
 ---
 
+## Nota sobre Interface Web
+- Até o momento, não foi desenvolvida uma interface web customizada para o projeto.
+- Para gerenciar os dados (jogos, usuários, categorias, etc.), utiliza-se a interface administrativa padrão do Django (/admin), que já oferece funcionalidade -  ---- completa para cadastro, edição e visualização dos dados.
+- http://127.0.0.1:8000/admin/
+
+---
+
 ## Como Rodar o Projeto Localmente
 
 ### 1. Clone o repositório
