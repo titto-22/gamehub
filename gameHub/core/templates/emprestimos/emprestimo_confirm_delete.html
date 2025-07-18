@@ -1,0 +1,6 @@
+<h2>Excluir Empréstimo</h2>
+<p>Tem certeza que deseja excluir o empréstimo de {{ emprestimo.jogo }} para {{ emprestimo.amigo }}?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar</button>
+</form>

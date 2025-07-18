@@ -1,0 +1,7 @@
+<h2>{{ desenvolvedora.nome }}</h2>
+<a href="{% url 'desenvolvedora_update' desenvolvedora.pk %}">Editar</a>
+<form method="post" action="{% url 'desenvolvedora_delete' desenvolvedora.pk %}">
+    {% csrf_token %}
+    <button type="submit">Deletar</button>
+</form>
+<a href="{% url 'desenvolvedora_list' %}">Voltar</a>

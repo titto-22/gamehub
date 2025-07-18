@@ -1,0 +1,7 @@
+<h2>Desenvolvedoras</h2>
+<a href="{% url 'desenvolvedora_create' %}">Nova Desenvolvedora</a>
+<ul>
+    {% for desenvolvedora in desenvolvedoras %}
+        <li><a href="{% url 'desenvolvedora_detail' desenvolvedora.pk %}">{{ desenvolvedora.nome }}</a></li>
+    {% endfor %}
+</ul>

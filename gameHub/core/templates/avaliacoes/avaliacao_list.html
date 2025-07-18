@@ -1,0 +1,12 @@
+<h2>Minhas Avaliações</h2>
+<a href="{% url 'avaliacao_create' %}">Nova Avaliação</a>
+<ul>
+    {% for avaliacao in avaliacoes %}
+        <li>
+            {{ avaliacao.jogo }} - Nota: {{ avaliacao.nota }} <br>
+            "{{ avaliacao.comentario }}"<br>
+            <a href="{% url 'avaliacao_update' avaliacao.pk %}">Editar</a>
+            <a href="{% url 'avaliacao_delete' avaliacao.pk %}">Excluir</a>
+        </li>
+    {% endfor %}
+</ul>

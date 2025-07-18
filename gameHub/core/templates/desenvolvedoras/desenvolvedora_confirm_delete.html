@@ -1,0 +1,7 @@
+<h2>Deletar Desenvolvedora</h2>
+<p>Tem certeza que deseja deletar "{{ desenvolvedora.nome }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar</button>
+</form>
+<a href="{% url 'desenvolvedora_list' %}">Cancelar</a>

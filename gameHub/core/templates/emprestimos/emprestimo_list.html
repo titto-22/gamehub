@@ -1,0 +1,13 @@
+<h2>Meus Empréstimos</h2>
+<a href="{% url 'emprestimo_create' %}">Novo Empréstimo</a>
+<ul>
+    {% for e in emprestimos %}
+        <li>
+            {{ e.jogo.titulo }} para {{ e.amigo.username }} em {{ e.data_emprestimo }}
+            {% if e.data_devolucao %} - Devolvido em {{ e.data_devolucao }}{% endif %}
+            <br>
+            <a href="{% url 'emprestimo_update' e.pk %}">Editar</a> |
+            <a href="{% url 'emprestimo_delete' e.pk %}">Excluir</a>
+        </li>
+    {% endfor %}
+</ul>

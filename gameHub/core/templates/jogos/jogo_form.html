@@ -1,0 +1,7 @@
+<h1>{{ form.instance.pk|yesno:"Editar Jogo,Novo Jogo" }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+<a href="{% url 'jogo_list' %}">Voltar</a>

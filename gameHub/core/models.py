@@ -23,6 +23,7 @@ class Desenvolvedora(models.Model):
 
 class Jogo(models.Model):
     titulo = models.CharField(max_length=100)
+    descricao = models.TextField(blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     plataforma = models.ForeignKey(Plataforma, on_delete=models.CASCADE)
     desenvolvedora = models.ForeignKey(Desenvolvedora, on_delete=models.SET_NULL, null=True)

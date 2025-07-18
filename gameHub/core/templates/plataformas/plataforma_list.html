@@ -1,0 +1,7 @@
+<h2>Plataformas</h2>
+<a href="{% url 'plataforma_create' %}">Nova Plataforma</a>
+<ul>
+    {% for plataforma in plataformas %}
+        <li><a href="{% url 'plataforma_detail' plataforma.pk %}">{{ plataforma.nome }}</a></li>
+    {% endfor %}
+</ul>

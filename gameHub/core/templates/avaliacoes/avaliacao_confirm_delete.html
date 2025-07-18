@@ -1,0 +1,6 @@
+<h2>Excluir Avaliação</h2>
+<p>Você tem certeza que deseja excluir a avaliação de {{ avaliacao.jogo }}?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar</button>
+</form>

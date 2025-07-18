@@ -1,0 +1,7 @@
+<h2>Deletar Plataforma</h2>
+<p>Tem certeza que deseja deletar "{{ plataforma.nome }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar</button>
+</form>
+<a href="{% url 'plataforma_list' %}">Cancelar</a>
