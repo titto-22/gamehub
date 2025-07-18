@@ -105,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
 
@@ -136,3 +136,6 @@ REST_FRAMEWORK = {
 }
 
 
+LOGIN_URL = '/login/'  
+LOGIN_REDIRECT_URL = '/'  # Para onde o usuário será redirecionado após o login
+LOGOUT_REDIRECT_URL = '/login/'  # Para onde vai após logout

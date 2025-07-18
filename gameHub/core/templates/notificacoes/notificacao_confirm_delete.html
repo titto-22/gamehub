@@ -1,0 +1,6 @@
+<h2>Excluir Notificação</h2>
+<p>Deseja realmente excluir a notificação: "{{ notificacao.mensagem }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar</button>
+</form>

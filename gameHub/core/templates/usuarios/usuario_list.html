@@ -1,0 +1,13 @@
+<h2>Usuários</h2>
+<a href="{% url 'usuario_create' %}">Novo Usuário</a>
+<ul>
+    {% for u in usuarios %}
+        <li>
+            {{ u.username }} ({{ u.email }}) - Nascimento: {{ u.data_nascimento }}
+            <a href="{% url 'usuario_update' u.pk %}">Editar</a>
+            <a href="{% url 'usuario_delete' u.pk %}">Excluir</a>
+        </li>
+    {% empty %}
+        <li>Nenhum usuário cadastrado.</li>
+    {% endfor %}
+</ul>

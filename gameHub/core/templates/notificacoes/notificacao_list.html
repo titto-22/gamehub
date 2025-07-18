@@ -1,0 +1,15 @@
+<h2>Minhas Notificações</h2>
+<a href="{% url 'notificacao_create' %}">Nova Notificação</a>
+<ul>
+    {% for n in notificacoes %}
+        <li>
+            {{ n.mensagem }} - {{ n.criada_em|date:"d/m/Y H:i" }}
+            {% if n.lida %}(Lida){% else %}(Não lida){% endif %}
+            <br>
+            <a href="{% url 'notificacao_update' n.pk %}">Editar</a> |
+            <a href="{% url 'notificacao_delete' n.pk %}">Excluir</a>
+        </li>
+    {% empty %}
+        <li>Nenhuma notificação.</li>
+    {% endfor %}
+</ul>

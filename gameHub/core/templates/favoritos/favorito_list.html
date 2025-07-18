@@ -1,0 +1,12 @@
+<h2>Meus Favoritos</h2>
+<a href="{% url 'favorito_create' %}">Adicionar Favorito</a>
+<ul>
+    {% for fav in favoritos %}
+        <li>
+            {{ fav.jogo.titulo }} - adicionado em {{ fav.adicionado_em|date:"d/m/Y H:i" }}
+            <a href="{% url 'favorito_delete' fav.pk %}">Remover</a>
+        </li>
+    {% empty %}
+        <li>Nenhum jogo favorito.</li>
+    {% endfor %}
+</ul>

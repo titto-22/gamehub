@@ -1,7 +1,8 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import JogoViewSet, CategoriaViewSet, PlataformaViewSet, DesenvolvedoraViewSet
+from .views import JogoViewSet, CategoriaViewSet, PlataformaViewSet, DesenvolvedoraViewSet, CustomLoginView
 from . import views
+from django.contrib.auth import views as auth_views
 
 router = DefaultRouter()
 router.register(r'jogos', JogoViewSet)
@@ -39,6 +40,26 @@ urlpatterns = [
     path('emprestimos/novo/', views.emprestimo_create, name='emprestimo_create'),
     path('emprestimos/<int:pk>/editar/', views.emprestimo_update, name='emprestimo_update'),
     path('emprestimos/<int:pk>/deletar/', views.emprestimo_delete, name='emprestimo_delete'),
+    path('notificacoes/', views.notificacao_list, name='notificacao_list'),
+    path('notificacoes/novo/', views.notificacao_create, name='notificacao_create'),
+    path('notificacoes/<int:pk>/editar/', views.notificacao_update, name='notificacao_update'),
+    path('notificacoes/<int:pk>/deletar/', views.notificacao_delete, name='notificacao_delete'),
+    path('favoritos/', views.favorito_list, name='favorito_list'),
+    path('favoritos/novo/', views.favorito_create, name='favorito_create'),
+    path('favoritos/<int:pk>/deletar/', views.favorito_delete, name='favorito_delete'),
+    path('usuarios/', views.usuario_list, name='usuario_list'),
+    path('usuarios/novo/', views.usuario_create, name='usuario_create'),
+    path('usuarios/<int:pk>/editar/', views.usuario_update, name='usuario_update'),
+    path('usuarios/<int:pk>/deletar/', views.usuario_delete, name='usuario_delete'),
+    path('bibliotecas/', views.biblioteca_list, name='biblioteca_list'),
+    path('bibliotecas/novo/', views.biblioteca_create, name='biblioteca_create'),
+    path('bibliotecas/<int:pk>/', views.biblioteca_detail, name='biblioteca_detail'),
+    path('bibliotecas/<int:pk>/editar/', views.biblioteca_update, name='biblioteca_update'),
+    path('bibliotecas/<int:pk>/deletar/', views.biblioteca_delete, name='biblioteca_delete'),
+    path('accounts/login/', CustomLoginView.as_view(), name='login'),
+    path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('register/', views.register, name='register'),
 
 
 

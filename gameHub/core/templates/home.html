@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>Bem-vindo ao GameHub</h1>
+<p>Selecione uma das opções abaixo:</p>
+
+<ul class="list-group">
+    <li class="list-group-item"><a href="{% url 'jogo_list' %}">Gerenciar Jogos</a></li>
+    <li class="list-group-item"><a href="{% url 'categoria_list' %}">Gerenciar Categorias</a></li>
+    <li class="list-group-item"><a href="{% url 'plataforma_list' %}">Gerenciar Plataformas</a></li>
+    <li class="list-group-item"><a href="{% url 'desenvolvedora_list' %}">Gerenciar Desenvolvedoras</a></li>
+    <li class="list-group-item"><a href="{% url 'biblioteca_list' %}">Gerenciar Bibliotecas</a></li>
+    <li class="list-group-item"><a href="{% url 'avaliacao_list' %}">Gerenciar Avaliações</a></li>
+    <li class="list-group-item"><a href="{% url 'emprestimo_list' %}">Gerenciar Empréstimos</a></li>
+    <li class="list-group-item"><a href="{% url 'notificacao_list' %}">Gerenciar Notificações</a></li>
+    <li class="list-group-item"><a href="{% url 'favorito_list' %}">Gerenciar Favoritos</a></li>
+    <li class="list-group-item"><a href="{% url 'usuario_list' %}">Gerenciar Usuários</a></li>
+</ul>
+{% endblock %}

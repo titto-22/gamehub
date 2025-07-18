@@ -1,6 +1,7 @@
 # core/forms.py
 from django import forms
-from .models import Jogo, Categoria, Plataforma, Desenvolvedora,Biblioteca, Avaliacao, Emprestimo, Notificacao
+from .models import Jogo, Categoria, Plataforma, Desenvolvedora,Biblioteca, Avaliacao, Emprestimo, Notificacao, Favorito, Usuario
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 class JogoForm(forms.ModelForm):
     class Meta:
@@ -54,3 +55,26 @@ class NotificacaoForm(forms.ModelForm):
         model = Notificacao
         fields = ['mensagem', 'lida']
 
+class FavoritoForm(forms.ModelForm):
+    class Meta:
+        model = Favorito
+        fields = ['jogo']
+
+
+class UsuarioCreationForm(UserCreationForm):
+    data_nascimento = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date'}),
+        input_formats=['%Y-%m-%d'],  # Formato esperado
+        required=True
+    )
+    
+    class Meta(UserCreationForm.Meta):
+        model = Usuario
+        fields = ('username', 'email', 'data_nascimento', 'password1', 'password2')
+        
+
+class UsuarioUpdateForm(UserChangeForm):
+    password = None  # Não exibe o campo de senha
+    class Meta:
+        model = Usuario
+        fields = ['username', 'email', 'data_nascimento']

@@ -1,0 +1,6 @@
+<h2>Remover dos Favoritos</h2>
+<p>Tem certeza que deseja remover "{{ favorito.jogo.titulo }}" dos favoritos?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar</button>
+</form>

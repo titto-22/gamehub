@@ -1,10 +1,21 @@
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
-from .models import Jogo, Categoria, Plataforma, Desenvolvedora, Biblioteca, Avaliacao, Emprestimo, Notificacao
+from .models import Jogo, Categoria, Plataforma, Desenvolvedora, Biblioteca, Avaliacao, Emprestimo, Notificacao, Favorito, Usuario
 from .serializers import JogoSerializer, CategoriaSerializer, PlataformaSerializer, DesenvolvedoraSerializer
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import JogoForm, CategoriaForm, PlataformaForm, DesenvolvedoraForm, BibliotecaForm, AvaliacaoForm, EmprestimoForm, NotificacaoForm
+from .forms import JogoForm, CategoriaForm, PlataformaForm, DesenvolvedoraForm, BibliotecaForm, AvaliacaoForm, EmprestimoForm, NotificacaoForm, FavoritoForm, UsuarioUpdateForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model, login
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.forms import UserCreationForm
+from .forms import UsuarioCreationForm
+
+
+class CustomLoginView(LoginView):
+    template_name = 'accounts/login.html'
+
+
+
 
 class JogoViewSet(viewsets.ModelViewSet):
     queryset = Jogo.objects.all()
@@ -342,3 +353,86 @@ def notificacao_delete(request, pk):
         return redirect('notificacao_list')
     return render(request, 'notificacoes/notificacao_confirm_delete.html', {'notificacao': notificacao})
 
+
+
+
+@login_required
+def favorito_list(request):
+    favoritos = Favorito.objects.filter(usuario=request.user)
+    return render(request, 'favoritos/favorito_list.html', {'favoritos': favoritos})
+
+@login_required
+def favorito_create(request):
+    if request.method == 'POST':
+        form = FavoritoForm(request.POST)
+        if form.is_valid():
+            favorito = form.save(commit=False)
+            favorito.usuario = request.user
+            favorito.save()
+            return redirect('favorito_list')
+    else:
+        form = FavoritoForm()
+    return render(request, 'favoritos/favorito_form.html', {'form': form})
+
+@login_required
+def favorito_delete(request, pk):
+    favorito = Favorito.objects.get(pk=pk, usuario=request.user)
+    if request.method == 'POST':
+        favorito.delete()
+        return redirect('favorito_list')
+    return render(request, 'favoritos/favorito_confirm_delete.html', {'favorito': favorito})
+
+
+Usuario = get_user_model()
+
+@login_required
+def usuario_list(request):
+    usuarios = Usuario.objects.all()
+    return render(request, 'usuarios/usuario_list.html', {'usuarios': usuarios})
+
+@login_required
+def usuario_create(request):
+    if request.method == "POST":
+        form = UsuarioCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('usuario_list')
+    else:
+        form = UsuarioCreationForm()
+    return render(request, 'usuarios/usuario_form.html', {'form': form})
+
+@login_required
+def usuario_update(request, pk):
+    usuario = get_object_or_404(Usuario, pk=pk)
+    if request.method == "POST":
+        form = UsuarioUpdateForm(request.POST, instance=usuario)
+        if form.is_valid():
+            form.save()
+            return redirect('usuario_list')
+    else:
+        form = UsuarioUpdateForm(instance=usuario)
+    return render(request, 'usuarios/usuario_form.html', {'form': form})
+
+@login_required
+def usuario_delete(request, pk):
+    usuario = get_object_or_404(Usuario, pk=pk)
+    if request.method == "POST":
+        usuario.delete()
+        return redirect('usuario_list')
+    return render(request, 'usuarios/usuario_confirm_delete.html', {'usuario': usuario})
+
+def home_page(request):
+    return render(request, 'home.html')
+
+def register(request):
+    if request.method == 'POST':
+        form = UsuarioCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home')
+        else:
+            print(form.errors)  # Para depuração, veja os erros
+    else:
+        form = UsuarioCreationForm()
+    return render(request, 'accounts/register.html', {'form': form})

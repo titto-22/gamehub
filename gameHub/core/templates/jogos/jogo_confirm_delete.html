@@ -1,6 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <h1>Confirmar deleção de "{{ jogo.titulo }}"</h1>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Confirmar</button>
-    </form>
-<a href="{% url 'jogo_list' %}">Cancelar</a>
+<p>Tem certeza de que deseja deletar este jogo?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirmar</button>
+</form>
+<a href="{% url 'jogo_list' %}" class="btn btn-secondary">Cancelar</a>
+{% endblock %}
