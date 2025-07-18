@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 
+{% block title %}Confirmar Deleção{% endblock %}
+
 {% block content %}
-<h1>Confirmar deleção de "{{ jogo.titulo }}"</h1>
-<p>Tem certeza de que deseja deletar este jogo?</p>
-<form method="post">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Confirmar</button>
-</form>
-<a href="{% url 'jogo_list' %}" class="btn btn-secondary">Cancelar</a>
+<div class="container mt-4">
+    <h1>Confirmar deleção de "{{ jogo.titulo }}"</h1>
+    <p>Tem certeza de que deseja deletar este jogo?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirmar</button>
+    </form>
+    <a href="{% url 'jogo_list' %}" class="btn btn-secondary">Cancelar</a>
+</div>
 {% endblock %}

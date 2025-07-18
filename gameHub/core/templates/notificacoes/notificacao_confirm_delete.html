@@ -1,6 +1,15 @@
-<h2>Excluir Notificação</h2>
-<p>Deseja realmente excluir a notificação: "{{ notificacao.mensagem }}"?</p>
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Confirmar</button>
-</form>
+{% extends 'base.html' %}
+
+{% block title %}Excluir Notificação{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Excluir Notificação</h2>
+    <p>Deseja realmente excluir a notificação: <strong>"{{ notificacao.mensagem }}"</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirmar</button>
+    </form>
+    <a href="{% url 'notificacao_list' %}" class="btn btn-secondary">Cancelar</a>
+</div>
+{% endblock %}

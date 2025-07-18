@@ -1,10 +1,15 @@
 {% extends "base.html" %}
+
+{% block title %}Excluir Biblioteca{% endblock %}
+
 {% block content %}
-<h1>Excluir Biblioteca</h1>
-<p>Você tem certeza que deseja excluir "{{ biblioteca }}"?</p>
-<form method="POST">
-    {% csrf_token %}
-    <button type="submit">Sim, excluir</button>
-</form>
-<a href="{% url 'biblioteca_list' %}">Cancelar</a>
+<div class="container mt-4">
+    <h1>Excluir Biblioteca</h1>
+    <p>Você tem certeza que deseja excluir a biblioteca "{{ biblioteca }}"?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sim, excluir</button>
+    </form>
+    <a href="{% url 'biblioteca_list' %}" class="btn btn-secondary">Cancelar</a>
+</div>
 {% endblock %}

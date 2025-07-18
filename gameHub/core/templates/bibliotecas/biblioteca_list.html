@@ -1,18 +1,23 @@
 {% extends "base.html" %}
+
+{% block title %}Minhas Bibliotecas{% endblock %}
+
 {% block content %}
-<h1>Minhas Bibliotecas</h1>
-<a href="{% url 'biblioteca_create' %}">Nova Biblioteca</a>
-<ul>
-    {% for biblioteca in bibliotecas %}
-        <li>
-            <a href="{% url 'biblioteca_detail' biblioteca.pk %}">
-                {{ biblioteca }}
-            </a>
-            <a href="{% url 'biblioteca_update' biblioteca.pk %}">Editar</a>
-            <a href="{% url 'biblioteca_delete' biblioteca.pk %}">Excluir</a>
-        </li>
-    {% empty %}
-        <li>Nenhuma biblioteca cadastrada.</li>
-    {% endfor %}
-</ul>
+<div class="container mt-4">
+    <h1>Minhas Bibliotecas</h1>
+    <a href="{% url 'biblioteca_create' %}" class="btn btn-primary mb-3">Nova Biblioteca</a>
+    <ul class="list-group">
+        {% for biblioteca in bibliotecas %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{% url 'biblioteca_detail' biblioteca.pk %}">{{ biblioteca }}</a>
+                <div>
+                    <a href="{% url 'biblioteca_update' biblioteca.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'biblioteca_delete' biblioteca.pk %}" class="btn btn-danger btn-sm">Excluir</a>
+                </div>
+            </li>
+        {% empty %}
+            <li class="list-group-item">Nenhuma biblioteca cadastrada.</li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

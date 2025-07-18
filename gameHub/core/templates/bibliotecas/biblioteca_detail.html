@@ -1,13 +1,18 @@
 {% extends "base.html" %}
+
+{% block title %}Detalhes da Biblioteca{% endblock %}
+
 {% block content %}
-<h1>{{ biblioteca }}</h1>
-<h3>Jogos:</h3>
-<ul>
-    {% for jogo in biblioteca.jogos.all %}
-        <li>{{ jogo.titulo }}</li>
-    {% empty %}
-        <li>Nenhum jogo nesta biblioteca.</li>
-    {% endfor %}
-</ul>
-<a href="{% url 'biblioteca_list' %}">Voltar</a>
+<div class="container mt-4">
+    <h1>{{ biblioteca }}</h1>
+    <h3>Jogos:</h3>
+    <ul class="list-group">
+        {% for jogo in biblioteca.jogos.all %}
+            <li class="list-group-item">{{ jogo.titulo }}</li>
+        {% empty %}
+            <li class="list-group-item">Nenhum jogo nesta biblioteca.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'biblioteca_list' %}" class="btn btn-secondary mt-3">Voltar</a>
+</div>
 {% endblock %}

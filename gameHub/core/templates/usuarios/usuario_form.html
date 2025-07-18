@@ -1,6 +1,17 @@
-<h2>Cadastro/Edicão de Usuário</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Salvar</button>
-</form>
+{% extends 'base.html' %}
+
+{% block title %}{% if form.instance.pk %}Cadastro/Edicão de Usuário{% else %}Novo Usuário{% endif %}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ form.instance.pk|yesno:"Edição de Usuário,Novo Usuário" }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-success">Salvar</button>
+    </form>
+    <a href="{% url 'usuario_list' %}" class="btn btn-secondary">Voltar</a>
+</div>
+{% endblock %}

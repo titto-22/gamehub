@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 
+{% block title %}Detalhes do Jogo: {{ jogo.titulo }}{% endblock %}
+
 {% block content %}
-<h1>{{ jogo.titulo }}</h1>
-<p>{{ jogo.descricao }}</p>
-<p><strong>Plataforma:</strong> {{ jogo.plataforma }}</p>
-<p><strong>Desenvolvedora:</strong> {{ jogo.desenvolvedora }}</p>
-<p><strong>Categoria:</strong> {{ jogo.categoria }}</p>
-<a href="{% url 'jogo_list' %}" class="btn btn-primary">Voltar</a>
+<div class="container mt-4">
+    <h1>{{ jogo.titulo }}</h1>
+    <p>{{ jogo.descricao }}</p>
+    <p><strong>Plataforma:</strong> {{ jogo.plataforma }}</p>
+    <p><strong>Desenvolvedora:</strong> {{ jogo.desenvolvedora }}</p>
+    <p><strong>Categoria:</strong> {{ jogo.categoria }}</p>
+    <a href="{% url 'jogo_list' %}" class="btn btn-primary">Voltar</a>
+</div>
 {% endblock %}

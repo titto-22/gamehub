@@ -1,10 +1,17 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
+{% block title %}{% if form.instance.pk %}Editar Biblioteca{% else %}Nova Biblioteca{% endif %}{% endblock %}
+
 {% block content %}
-<h1>{% if form.instance.pk %}Editar{% else %}Nova{% endif %} Biblioteca</h1>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Salvar</button>
-</form>
-<a href="{% url 'biblioteca_list' %}">Cancelar</a>
+<div class="container mt-4">
+    <h2>{{ form.instance.pk|yesno:"Editar Biblioteca,Nova Biblioteca" }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-success">Salvar</button>
+    </form>
+    <a href="{% url 'biblioteca_list' %}" class="btn btn-secondary">Voltar</a>
+</div>
 {% endblock %}

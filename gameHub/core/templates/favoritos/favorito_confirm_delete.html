@@ -1,6 +1,15 @@
-<h2>Remover dos Favoritos</h2>
-<p>Tem certeza que deseja remover "{{ favorito.jogo.titulo }}" dos favoritos?</p>
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Confirmar</button>
-</form>
+{% extends 'base.html' %}
+
+{% block title %}Remover dos Favoritos{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Remover dos Favoritos</h2>
+    <p>Tem certeza que deseja remover "{{ favorito.jogo.titulo }}" dos favoritos?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirmar</button>
+    </form>
+    <a href="{% url 'favorito_list' %}" class="btn btn-secondary">Cancelar</a>
+</div>
+{% endblock %}
