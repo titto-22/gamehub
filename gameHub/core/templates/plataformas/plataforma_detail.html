@@ -1,7 +1,15 @@
-<h2>{{ plataforma.nome }}</h2>
-<a href="{% url 'plataforma_update' plataforma.pk %}">Editar</a>
-<form method="post" action="{% url 'plataforma_delete' plataforma.pk %}">
-    {% csrf_token %}
-    <button type="submit">Deletar</button>
-</form>
-<a href="{% url 'plataforma_list' %}">Voltar</a>
+{% extends 'base.html' %}
+
+{% block title %}Detalhes da Plataforma: {{ plataforma.nome }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ plataforma.nome }}</h2>
+    <a href="{% url 'plataforma_update' plataforma.pk %}" class="btn btn-warning">Editar</a>
+    <form method="post" action="{% url 'plataforma_delete' plataforma.pk %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Deletar</button>
+    </form>
+    <a href="{% url 'plataforma_list' %}" class="btn btn-secondary">Voltar</a>
+</div>
+{% endblock %}

@@ -1,3 +1,16 @@
-<h1>Detalhes da Categoria</h1>
-<p>Nome: {{ categoria.nome }}</p>
-<a href="{% url 'categoria_list' %}">Voltar</a>
+{% extends 'base.html' %}
+
+{% block title %}Detalhes da Categoria{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Detalhes da Categoria</h1>
+    <p><strong>Nome:</strong> {{ categoria.nome }}</p>
+    <a href="{% url 'categoria_update' categoria.pk %}" class="btn btn-warning">Editar</a>
+    <form method="post" action="{% url 'categoria_delete' categoria.pk %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Excluir</button>
+    </form>
+    <a href="{% url 'categoria_list' %}" class="btn btn-secondary">Voltar</a>
+</div>
+{% endblock %}

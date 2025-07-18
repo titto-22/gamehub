@@ -1,7 +1,17 @@
-<h2>Formulário de Plataforma</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Salvar</button>
-</form>
-<a href="{% url 'plataforma_list' %}">Voltar</a>
+{% extends 'base.html' %}
+
+{% block title %}{% if form.instance.pk %}Editar Plataforma{% else %}Nova Plataforma{% endif %}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ form.instance.pk|yesno:"Editar Plataforma,Nova Plataforma" }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-success">Salvar</button>
+    </form>
+    <a href="{% url 'plataforma_list' %}" class="btn btn-secondary">Voltar</a>
+</div>
+{% endblock %}

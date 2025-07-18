@@ -1,7 +1,17 @@
-<h1>{% if form.instance.pk %}Editar{% else %}Nova{% endif %} Categoria</h1>
+{% extends 'base.html' %}
+
+{% block title %}{% if form.instance.pk %}Editar Categoria{% else %}Nova Categoria{% endif %}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ form.instance.pk|yesno:"Editar Categoria,Nova Categoria" }}</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Salvar</button>
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-success">Salvar</button>
     </form>
-<a href="{% url 'categoria_list' %}">Cancelar</a>
+    <a href="{% url 'categoria_list' %}" class="btn btn-secondary">Cancelar</a>
+</div>
+{% endblock %}

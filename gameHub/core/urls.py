@@ -11,12 +11,12 @@ router.register(r'plataformas', PlataformaViewSet)
 router.register(r'desenvolvedoras', DesenvolvedoraViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('jogos/', views.jogo_list, name='jogo_list'),
-    path('jogos/<int:pk>/', views.jogo_detail, name='jogo_detail'),
-    path('jogos/novo/', views.jogo_create, name='jogo_create'),
-    path('jogos/<int:pk>/editar/', views.jogo_update, name='jogo_update'),
-    path('jogos/<int:pk>/deletar/', views.jogo_delete, name='jogo_delete'),
+    
+    path('jogos/', views.jogo_list, name='jogo_list'),  
+    path('jogos/<int:pk>/', views.jogo_detail, name='jogo_detail'), 
+    path('jogos/novo/', views.jogo_create, name='jogo_create'),  
+    path('jogos/<int:pk>/editar/', views.jogo_update, name='jogo_update'),  
+    path('jogos/<int:pk>/deletar/', views.jogo_delete, name='jogo_delete'),  
     path('categorias/', views.categoria_list, name='categoria_list'),
     path('categorias/novo/', views.categoria_create, name='categoria_create'),
     path('categorias/<int:pk>/', views.categoria_detail, name='categoria_detail'),
@@ -60,8 +60,6 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('register/', views.register, name='register'),
-
-
-
+    path('', include(router.urls)), 
 
 ]

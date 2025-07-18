@@ -20,7 +20,7 @@ class CustomLoginView(LoginView):
 class JogoViewSet(viewsets.ModelViewSet):
     queryset = Jogo.objects.all()
     serializer_class = JogoSerializer
-    permission_classes = [AllowAny]  # <--- aqui
+    permission_classes = [AllowAny]  
 
 class CategoriaViewSet(viewsets.ModelViewSet):
     queryset = Categoria.objects.all()
@@ -432,7 +432,7 @@ def register(request):
             login(request, user)
             return redirect('home')
         else:
-            print(form.errors)  # Para depuração, veja os erros
+            print(form.errors) 
     else:
         form = UsuarioCreationForm()
     return render(request, 'accounts/register.html', {'form': form})

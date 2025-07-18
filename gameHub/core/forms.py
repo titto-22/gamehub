@@ -64,7 +64,7 @@ class FavoritoForm(forms.ModelForm):
 class UsuarioCreationForm(UserCreationForm):
     data_nascimento = forms.DateField(
         widget=forms.DateInput(attrs={'type': 'date'}),
-        input_formats=['%Y-%m-%d'],  # Formato esperado
+        input_formats=['%Y-%m-%d'], 
         required=True
     )
     
@@ -74,7 +74,7 @@ class UsuarioCreationForm(UserCreationForm):
         
 
 class UsuarioUpdateForm(UserChangeForm):
-    password = None  # Não exibe o campo de senha
+    password = None  
     class Meta:
         model = Usuario
         fields = ['username', 'email', 'data_nascimento']

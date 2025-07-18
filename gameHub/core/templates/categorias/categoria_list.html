@@ -1,12 +1,23 @@
-<h1>Lista de Categorias</h1>
-<a href="{% url 'categoria_create' %}">Nova Categoria</a>
-<ul>
-    {% for categoria in categorias %}
-        <li>
-            {{ categoria.nome }}
-            <a href="{% url 'categoria_detail' categoria.pk %}">Detalhes</a>
-            <a href="{% url 'categoria_update' categoria.pk %}">Editar</a>
-            <a href="{% url 'categoria_delete' categoria.pk %}">Deletar</a>
-        </li>
-    {% endfor %}
-</ul>
+{% extends 'base.html' %}
+
+{% block title %}Categorias{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Categorias</h1>
+    <a href="{% url 'categoria_create' %}" class="btn btn-primary mb-3">Nova Categoria</a>
+    <ul class="list-group">
+        {% for categoria in categorias %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{% url 'categoria_detail' categoria.pk %}">{{ categoria.nome }}</a>
+                <div>
+                    <a href="{% url 'categoria_update' categoria.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'categoria_delete' categoria.pk %}" class="btn btn-danger btn-sm">Excluir</a>
+                </div>
+            </li>
+        {% empty %}
+            <li class="list-group-item">Nenhuma categoria cadastrada.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

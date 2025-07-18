@@ -137,5 +137,5 @@ REST_FRAMEWORK = {
 
 
 LOGIN_URL = '/login/'  
-LOGIN_REDIRECT_URL = '/'  # Para onde o usuário será redirecionado após o login
-LOGOUT_REDIRECT_URL = '/login/'  # Para onde vai após logout
+LOGIN_REDIRECT_URL = '/'  
+LOGOUT_REDIRECT_URL = '/login/'  

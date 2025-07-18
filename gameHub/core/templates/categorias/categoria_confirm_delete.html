@@ -1,7 +1,15 @@
-<h1>Deletar Categoria</h1>
-<p>Tem certeza que deseja excluir "{{ categoria.nome }}"?</p>
+{% extends 'base.html' %}
+
+{% block title %}Deletar Categoria{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Deletar Categoria</h1>
+    <p>Tem certeza que deseja excluir "{{ categoria.nome }}"?</p>
     <form method="post">
         {% csrf_token %}
-        <button type="submit">Confirmar</button>
+        <button type="submit" class="btn btn-danger">Confirmar</button>
     </form>
-<a href="{% url 'categoria_list' %}">Cancelar</a>
+    <a href="{% url 'categoria_list' %}" class="btn btn-secondary">Cancelar</a>
+</div>
+{% endblock %}

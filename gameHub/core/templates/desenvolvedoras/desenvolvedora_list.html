@@ -1,7 +1,19 @@
-<h2>Desenvolvedoras</h2>
-<a href="{% url 'desenvolvedora_create' %}">Nova Desenvolvedora</a>
-<ul>
-    {% for desenvolvedora in desenvolvedoras %}
-        <li><a href="{% url 'desenvolvedora_detail' desenvolvedora.pk %}">{{ desenvolvedora.nome }}</a></li>
-    {% endfor %}
-</ul>
+{% extends 'base.html' %}
+
+{% block title %}Desenvolvedoras{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Desenvolvedoras</h2>
+    <a href="{% url 'desenvolvedora_create' %}" class="btn btn-primary mb-3">Nova Desenvolvedora</a>
+    <ul class="list-group">
+        {% for desenvolvedora in desenvolvedoras %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{% url 'desenvolvedora_detail' desenvolvedora.pk %}">{{ desenvolvedora.nome }}</a>
+            </li>
+        {% empty %}
+            <li class="list-group-item">Nenhuma desenvolvedora cadastrada.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
