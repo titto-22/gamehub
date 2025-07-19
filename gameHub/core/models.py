@@ -56,10 +56,11 @@ class Emprestimo(models.Model):
         return f"Empréstimo de {self.jogo.titulo} por {self.dono.username} para {self.amigo.username}"
 
 class Notificacao(models.Model):
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)  # Remetente
     mensagem = models.CharField(max_length=255)
     lida = models.BooleanField(default=False)
     criada_em = models.DateTimeField(auto_now_add=True)
+    destinatario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='notificacoes_recebidas')  # Corrigido aqui
 
     def __str__(self):
         return self.mensagem

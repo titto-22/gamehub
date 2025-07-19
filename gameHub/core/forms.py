@@ -53,7 +53,7 @@ class EmprestimoForm(forms.ModelForm):
 class NotificacaoForm(forms.ModelForm):
     class Meta:
         model = Notificacao
-        fields = ['mensagem', 'lida']
+        fields = ['destinatario', 'mensagem'] 
 
 class FavoritoForm(forms.ModelForm):
     class Meta:

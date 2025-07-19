@@ -9,6 +9,7 @@ from django.contrib.auth import get_user_model, login
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UsuarioCreationForm
+from .services import EmailSender
 
 
 class CustomLoginView(LoginView):
@@ -190,7 +191,7 @@ def desenvolvedora_delete(request, pk):
 
 @login_required
 def biblioteca_list(request):
-    bibliotecas = Biblioteca.objects.filter(usuario=request.user)
+    bibliotecas = Biblioteca.objects.filter(usuario=request.user)  # Filtrar bibliotecas do usuário autenticado
     return render(request, 'bibliotecas/biblioteca_list.html', {'bibliotecas': bibliotecas})
 
 @login_required
@@ -214,7 +215,7 @@ def biblioteca_create(request):
 
 @login_required
 def biblioteca_update(request, pk):
-    biblioteca = Biblioteca.objects.get(pk=pk, usuario=request.user)
+    biblioteca = get_object_or_404(Biblioteca, pk=pk, usuario=request.user)  
     if request.method == 'POST':
         form = BibliotecaForm(request.POST, instance=biblioteca)
         if form.is_valid():
@@ -237,7 +238,7 @@ def biblioteca_delete(request, pk):
 
 @login_required
 def avaliacao_list(request):
-    avaliacoes = Avaliacao.objects.filter(usuario=request.user)
+    avaliacoes = Avaliacao.objects.all()
     return render(request, 'avaliacoes/avaliacao_list.html', {'avaliacoes': avaliacoes})
 
 @login_required
@@ -287,9 +288,12 @@ def emprestimo_create(request):
         form = EmprestimoForm(request.POST)
         if form.is_valid():
             emprestimo = form.save(commit=False)
-            emprestimo.dono = request.user
-            emprestimo.save()
-            return redirect('emprestimo_list')
+            if emprestimo.amigo == request.user:  # Verifica se o usuário está tentando emprestar para si mesmo
+                form.add_error('amigo', 'Você não pode emprestar jogos para si mesmo.')
+            else:
+                emprestimo.dono = request.user
+                emprestimo.save()
+                return redirect('emprestimo_list')
     else:
         form = EmprestimoForm()
     return render(request, 'emprestimos/emprestimo_form.html', {'form': form})
@@ -328,6 +332,7 @@ def notificacao_create(request):
             notificacao = form.save(commit=False)
             notificacao.usuario = request.user
             notificacao.save()
+            EmailSender().enviar(notificacao.destinatario.email, notificacao.mensagem)
             return redirect('notificacao_list')
     else:
         form = NotificacaoForm()

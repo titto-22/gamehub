@@ -139,3 +139,10 @@ REST_FRAMEWORK = {
 LOGIN_URL = '/login/'  
 LOGIN_REDIRECT_URL = '/'  
 LOGOUT_REDIRECT_URL = '/login/'  
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.example.com'  # O servidor SMTP que você está usando
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'your_email@example.com'  # Seu e-mail
+EMAIL_HOST_PASSWORD = 'your_password'  # Sua senha
