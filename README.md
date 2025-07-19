@@ -20,14 +20,6 @@ Este é um sistema web desenvolvido com Django + Django REST Framework para gere
 - Django REST Framework
 - SQLite (banco padrão do Django)
 
----
-
-## Nota sobre Interface Web
-- Até o momento, não foi desenvolvida uma interface web customizada para o projeto.
-- Para gerenciar os dados (jogos, usuários, categorias, etc.), utiliza-se a interface administrativa padrão do Django (/admin), que já oferece funcionalidade -  ---- completa para cadastro, edição e visualização dos dados.
-- http://127.0.0.1:8000/admin/
-
----
 
 ## Como Rodar o Projeto Localmente
 
@@ -54,10 +46,6 @@ pip install -r requirements.txt
 python manage.py migrate
 ```
 
-### 5. Crie um superusuário (para acessar o /admin)
-```bash
-python manage.py createsuperuser
-```
 
 ### 6. Rode o servidor local
 ```bash
